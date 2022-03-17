@@ -8,11 +8,15 @@
 </template>
 
 <script setup lang="ts">
+import {useStore} from "../../stores";
 import { ref } from 'vue'
 const title = ref('Hello')
+
+const  store = useStore()
+console.log(store)
 </script>
 
-<style>
+<style scoped lang="scss">
 .content {
   display: flex;
   flex-direction: column;
@@ -36,6 +40,6 @@ const title = ref('Hello')
 
 .title {
   font-size: 36rpx;
-  color: #8f8f94;
+  color: $uni-text-color-grey;
 }
 </style>
