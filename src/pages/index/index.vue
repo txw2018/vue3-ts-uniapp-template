@@ -2,18 +2,14 @@
   <view class="content">
     <image class="logo" src="/static/logo.png" />
     <view class="text-area">
-      <text class="title">{{ title }}</text>
+      <text class="title">{{ store.value }}</text>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import {useStore} from "../../stores";
-import { ref } from 'vue'
-const title = ref('Hello')
-
-const  store = useStore()
-console.log(store)
+const store = useStore()
 </script>
 
 <style scoped lang="scss">

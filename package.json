@@ -44,6 +44,8 @@
     "@dcloudio/uni-mp-toutiao": "^3.0.0-alpha-3040120220308001",
     "@dcloudio/uni-mp-weixin": "^3.0.0-alpha-3040120220308001",
     "@dcloudio/uni-quickapp-webview": "^3.0.0-alpha-3040120220308001",
+    "axios": "^0.26.1",
+    "axios-retry": "^3.2.4",
     "pinia": "^2.0.12",
     "vue": "^3.2.31",
     "vue-i18n": "^9.1.9",

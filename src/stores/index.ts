@@ -5,7 +5,7 @@ import { defineStore } from 'pinia'
 export const useStore = defineStore('main', {
     state:()=> {
        return {
-          name: 1
+          value: 'hello uniapp'
        }
     }
 })
