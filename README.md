@@ -3,7 +3,8 @@
 uniapp ： vue3 + ts + vite + axios + pinia + sass
 
 
-### git 提交规范
+### git 提交规范  [相关文章](https://juejin.cn/post/6844903606815064077)
+
 
 + type: commit 的类型
 + feat: 新特性

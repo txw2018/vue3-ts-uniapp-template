@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import {useUserStore} from "../../store";
-const store = useUserStore()
+const store = useUserStore();
 
 function changeValue() {
   store.changeValue()
