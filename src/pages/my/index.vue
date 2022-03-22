@@ -1,9 +1,7 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
     <view class="text-area">
-      <text class="title">{{ store.getValue }}</text>
-      <button @click="changeValue">切換</button>
+      <text class="title">{{ store.value }}11122555</text>
     </view>
   </view>
 </template>
@@ -11,10 +9,6 @@
 <script setup lang="ts">
 import {useUserStore} from "../../store";
 const store = useUserStore()
-
-function changeValue() {
-  store.changeValue()
-}
 </script>
 
 <style scoped lang="scss">
@@ -37,7 +31,6 @@ function changeValue() {
 .text-area {
   display: flex;
   justify-content: center;
-  flex-direction:column;
 }
 
 .title {
