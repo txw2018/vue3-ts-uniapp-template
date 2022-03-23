@@ -30,7 +30,10 @@
     "build:quickapp-webview": "uni build -p quickapp-webview",
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "format": "prettier --write ./**/*.{vue,ts,tsx,js,jsx,css,less,scss,json,md}",
+    "commit": "git-cz"
   },
   "dependencies": {
     "@dcloudio/uni-app": "^3.0.0-alpha-3040120220308001",
@@ -57,9 +60,21 @@
     "@dcloudio/uni-automator": "^3.0.0-alpha-3040120220308001",
     "@dcloudio/uni-cli-shared": "^3.0.0-alpha-3040120220308001",
     "@dcloudio/vite-plugin-uni": "^3.0.0-alpha-3040120220308001",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
     "autoprefixer": "^10.4.2",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^8.5.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.6.0",
     "sass": "^1.49.9",
     "typescript": "^4.6.2",
     "vite": "^2.8.6"

@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import {useUserStore} from "../../store";
-const store = useUserStore();
+import { useUserStore } from '../../store'
+const store = useUserStore()
 
-function changeValue() {
+function changeValue () {
   store.changeValue()
 }
 </script>
