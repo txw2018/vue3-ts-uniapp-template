@@ -1,13 +1,13 @@
 <template>
   <view class="content">
     <view class="text-area">
-      <text class="title">{{ store.value }}11122555</text>
+      <text class="title">{{ store.value }}</text>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '../../store'
+import { useUserStore } from '../../store/user.ts'
 const store = useUserStore()
 </script>
 
