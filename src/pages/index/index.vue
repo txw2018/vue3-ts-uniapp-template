@@ -5,6 +5,7 @@
       <button @click="changeValue">切換</button>
       <button @click="share">分享</button>
     </view>
+    <text></text>
   </view>
 </template>
 
@@ -12,6 +13,7 @@
 import { useUserStore } from '../../store/user.ts'
 
 const store = useUserStore()
+console.log(import.meta.env, 123)
 
 function changeValue() {
   store.changeValue()
