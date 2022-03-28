@@ -10,5 +10,8 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['vue', '@typescript-eslint'],
+  globals: {
+    uni: true,
+  },
   rules: {},
 }
