@@ -1,4 +1,4 @@
 export interface Result<T> {
-    code:number;
-    data:T
+  code: number
+  data: T
 }

@@ -16,12 +16,17 @@
     "types": [
       "@dcloudio/types",
       "vite/client"
-    ]
+    ],
+    "paths": { // 路径映射，相对于baseUrl
+      // 如使用jq时不想使用默认版本，而需要手动指定版本，可进行如下配置
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
-  ]
+  ],
+
 }
