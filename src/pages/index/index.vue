@@ -11,7 +11,6 @@
 
 <script setup lang="ts">
 import { useUserStore } from '../../store/user.ts'
-
 const store = useUserStore()
 console.log(import.meta.env, 123)
 
