@@ -26,8 +26,8 @@ function handleRequest(config: AxiosRequestConfig) {
   return config
 }
 
-function handleRequestError(e: AxiosError) {
-  throw e
+function handleRequestError(error: AxiosError) {
+  throw error
 }
 
 function handleResponse(response: AxiosResponse) {
@@ -40,5 +40,11 @@ function handleResponseError(error: AxiosError) {
       break
     case 401:
       break
+    case 405:
+      handleResponseError405(error)
+      break
   }
+}
+function handleResponseError405(error: AxiosError) {
+  console.log(error.response)
 }
