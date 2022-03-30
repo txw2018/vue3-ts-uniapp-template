@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const name = ref(0)
+const name = ref(0);
 function show() {
-  console.log(123)
+  console.log(123);
 }
 </script>
 <template>

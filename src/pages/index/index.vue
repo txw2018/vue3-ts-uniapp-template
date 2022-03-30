@@ -8,23 +8,25 @@
       <button @click="changeValue">切換</button>
       <button @click="share">分享</button>
     </view>
-    <svgIconVue name="123"></svgIconVue>
-    <uni-badge text="2" type="success" @click="bindClick"></uni-badge>
+    <svgIconVue name="123" />
+    <uni-badge text="2" type="success" @click="bindClick" />
   </view>
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from '@/store/user'
-import svgIconVue from '@/components/base/svg-icon.vue'
-const store = useUserStore()
+import { useUserStore } from "@/store/user";
+import svgIconVue from "@/components/base/svg-icon.vue";
+const store = useUserStore();
 
 function changeValue() {
-  store.changeValue()
+  store.changeValue();
 }
 function share() {
-  console.log(1232)
+  console.log(1232);
 }
-function bindClick() {}
+function bindClick() {
+  console.log(123);
+}
 </script>
 
 <style scoped lang="scss">

@@ -3,48 +3,48 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   AxiosError,
-} from 'axios'
-import axiosRetry from 'axios-retry'
+} from "axios";
+import axiosRetry from "axios-retry";
 
-axiosRetry(axios, { retries: 5 })
+axiosRetry(axios, { retries: 5 });
 
-export const request = createAxiosInstance()
+export const request = createAxiosInstance();
 
 function createAxiosInstance(): AxiosInstance {
   const instance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     timeout: 1000,
-  })
-  instance.interceptors.request.use(handleRequest, handleRequestError)
-  instance.interceptors.response.use(handleResponse, handleResponseError)
-  return instance
+  });
+  instance.interceptors.request.use(handleRequest, handleRequestError);
+  instance.interceptors.response.use(handleResponse, handleResponseError);
+  return instance;
 }
 
 function handleRequest(config: AxiosRequestConfig) {
-  const token = uni.getStorageSync('token')
-  config.headers!.Authorization = 'Bearer ' + token
-  return config
+  const token = uni.getStorageSync("token");
+  config.headers!.Authorization = "Bearer " + token;
+  return config;
 }
 
 function handleRequestError(error: AxiosError) {
-  throw error
+  throw error;
 }
 
 function handleResponse(response: AxiosResponse) {
-  return response.data
+  return response.data;
 }
 
 function handleResponseError(error: AxiosError) {
   switch (error.response?.status) {
     case 400:
-      break
+      break;
     case 401:
-      break
+      break;
     case 405:
-      handleResponseError405(error)
-      break
+      handleResponseError405(error);
+      break;
   }
 }
 function handleResponseError405(error: AxiosError) {
-  console.log(error.response)
+  console.log(error.response);
 }

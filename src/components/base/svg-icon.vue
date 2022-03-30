@@ -1,10 +1,10 @@
 <template>
   <svg :class="svgClass" v-bind="$attrs" :style="{ color: color }">
-    <use :xlink:href="iconName" />
+    <use :xlink:href="iconName"></use>
   </svg>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from "vue";
 const props = defineProps({
   name: {
     type: String,
@@ -12,15 +12,15 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: '',
+    default: "",
   },
-})
+});
 
-const iconName = computed(() => `#icon-${props.name}`)
+const iconName = computed(() => `#icon-${props.name}`);
 const svgClass = computed(() => {
   if (props.name) {
-    return `svg-icon icon-${props.name}`
+    return `svg-icon icon-${props.name}`;
   }
-  return 'svg-icon'
-})
+  return "svg-icon";
+});
 </script>
