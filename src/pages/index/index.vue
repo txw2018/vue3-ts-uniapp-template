@@ -1,32 +1,41 @@
 <template>
-  <view class="content">
+  <view class="home">
+    <uni-nav-bar shadow left-icon="left">
+      <view>标题栏</view>
+    </uni-nav-bar>
     <view class="text-area">
       <text class="title">{{ store.getValue }}</text>
       <button @click="changeValue">切換</button>
       <button @click="share">分享</button>
     </view>
-    <text></text>
+    <svgIconVue name="123"></svgIconVue>
+    <uni-badge text="2" type="success" @click="bindClick"></uni-badge>
   </view>
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from '@/store/user'
+import svgIconVue from '@/components/base/svg-icon.vue'
 const store = useUserStore()
 
 function changeValue() {
   store.changeValue()
 }
 function share() {
-  console.log(123)
+  console.log(1232)
 }
+function bindClick() {}
 </script>
 
 <style scoped lang="scss">
-.content {
+.home {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  .uni-navbar {
+    width: 100%;
+  }
 }
 
 .logo {
@@ -42,10 +51,9 @@ function share() {
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-
-.title {
-  font-size: 36rpx;
-  color: $uni-text-color-grey;
+  .title {
+    font-size: 36rpx;
+    color: $uni-text-color-grey;
+  }
 }
 </style>

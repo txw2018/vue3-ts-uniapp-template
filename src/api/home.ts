@@ -1,6 +1,6 @@
 import { request } from '@/utils/request'
-import { Result } from './type'
+import { Result } from '@/types'
 
 export function getUserInfo(id: number) {
-  return request.get<Result<unknown>>('api/user', { params: { id } })
+  return request.get<Result<any>>('api/user', { params: { id } })
 }
