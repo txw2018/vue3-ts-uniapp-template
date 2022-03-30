@@ -1,18 +1,3 @@
-<template>
-  <view class="home">
-    <uni-nav-bar shadow left-icon="left">
-      <view>标题栏</view>
-    </uni-nav-bar>
-    <view class="text-area">
-      <text class="title">{{ store.getValue }}</text>
-      <button @click="changeValue">切換</button>
-      <button @click="share">分享</button>
-    </view>
-    <svgIconVue name="123" />
-    <uni-badge text="2" type="success" @click="bindClick" />
-  </view>
-</template>
-
 <script setup lang="ts">
 import { useUserStore } from "@/store/user";
 import svgIconVue from "@/components/base/svg-icon.vue";
@@ -28,6 +13,20 @@ function bindClick() {
   console.log(123);
 }
 </script>
+<template>
+  <view class="home">
+    <uni-nav-bar shadow left-icon="left">
+      <view>标题栏</view>
+    </uni-nav-bar>
+    <view class="text-area">
+      <text class="title">{{ store.getValue }}</text>
+      <button @click="changeValue">切換</button>
+      <button @click="share">分享</button>
+    </view>
+    <svgIconVue name="123" />
+    <uni-badge text="2" type="success" @click="bindClick" />
+  </view>
+</template>
 
 <style scoped lang="scss">
 .home {

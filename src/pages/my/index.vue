@@ -6,6 +6,7 @@ function show() {
   console.log(123);
 }
 </script>
+
 <template>
   <view class="content">
     <view class="text-area">
