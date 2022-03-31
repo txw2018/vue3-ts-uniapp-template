@@ -47,5 +47,6 @@ console.log(import.meta.env, 123);
 </template>
 <style scoped lang="scss">
 .login-container {
+  width: 100%;
 }
 </style>

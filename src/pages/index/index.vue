@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useUserStore } from "@/store/user";
-import SvgIcon from "@/components/base/svg-icon.vue";
 const store = useUserStore();
 
 function changeValue() {
@@ -28,7 +27,6 @@ function goLogin() {
       <button @click="changeValue">切換</button>
       <button @click="share">分享</button>
     </view>
-    <svg-icon name="123" />
     <button @click="goLogin">去登录</button>
     <uni-badge text="2" type="success" @click="bindClick" />
   </view>
