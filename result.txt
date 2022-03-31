@@ -1,0 +1,56 @@
+├─.commitlintrc.js
+├─.env.development
+├─.env.production
+├─.env.qa1
+├─.env.qa2
+├─.env.qa3
+├─.env.qa4
+├─.env.release
+├─.eslintignore
+├─.eslintrc.cjs
+├─.gitignore
+├─index.html
+├─package-lock.json
+├─package.json
+├─README.md
+├─result.txt
+├─tsconfig.json
+├─vite.config.ts
+├─src
+|  ├─App.vue
+|  ├─env.d.ts
+|  ├─main.ts
+|  ├─manifest.json
+|  ├─pages.json
+|  ├─plugin.d.ts
+|  ├─uni.scss
+|  ├─utils
+|  |   ├─request.ts
+|  |   └validate.ts
+|  ├─types                
+|  |   └index.ts
+|  ├─svg
+|  |  ├─home.svg
+|  |  ├─icon
+|  |  |  └home.svg
+|  ├─store
+|  |   └user.ts
+|  ├─static
+|  |   └logo.png
+|  ├─pages
+|  |   ├─my
+|  |   | └index.vue
+|  |   ├─index
+|  |   |   └index.vue
+|  ├─components
+|  |     ├─base
+|  |     |  └svg-icon.vue
+|  ├─api
+|  |  └home.ts
+├─.vscode
+|    └settings.json
+├─.husky
+|   ├─commit-msg
+|   ├─_
+|   | ├─.gitignore
+|   | └husky.sh

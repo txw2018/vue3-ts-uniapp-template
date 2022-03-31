@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from "@/store/user";
-import svgIconVue from "@/components/base/svg-icon.vue";
+import SvgIcon from "@/components/base/svg-icon.vue";
 const store = useUserStore();
 
 function changeValue() {
@@ -23,7 +23,7 @@ function bindClick() {
       <button @click="changeValue">切換</button>
       <button @click="share">分享</button>
     </view>
-    <svgIconVue name="123" />
+    <svg-icon name="123" />
     <uni-badge text="2" type="success" @click="bindClick" />
   </view>
 </template>
