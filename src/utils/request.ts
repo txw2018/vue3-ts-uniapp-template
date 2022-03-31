@@ -12,8 +12,8 @@ export const request = createAxiosInstance();
 
 function createAxiosInstance(): AxiosInstance {
   const instance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
-    timeout: 1000,
+    baseURL: import.meta.env.VITE_BASE_API,
+    timeout: 10000,
   });
   instance.interceptors.request.use(handleRequest, handleRequestError);
   instance.interceptors.response.use(handleResponse, handleResponseError);
@@ -21,7 +21,7 @@ function createAxiosInstance(): AxiosInstance {
 }
 
 function handleRequest(config: AxiosRequestConfig) {
-  const token = uni.getStorageSync("token");
+  const token = uni.getStorageSync("yq_token");
   config.headers!.Authorization = "Bearer " + token;
   return config;
 }
@@ -31,7 +31,7 @@ function handleRequestError(error: AxiosError) {
 }
 
 function handleResponse(response: AxiosResponse) {
-  return response.data;
+  return response;
 }
 
 function handleResponseError(error: AxiosError) {

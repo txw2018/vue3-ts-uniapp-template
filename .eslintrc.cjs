@@ -12,6 +12,9 @@ module.exports = {
   env: {
     "vue/setup-compiler-macros": true, //解决vue单文件 的全局变量未定义 比如defineProps
   },
+  globals: {
+    uni: true,
+  },
   rules: {
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-explicit-any": "off",

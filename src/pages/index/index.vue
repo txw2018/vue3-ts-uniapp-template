@@ -12,6 +12,11 @@ function share() {
 function bindClick() {
   console.log(123);
 }
+function goLogin() {
+  uni.navigateTo({
+    url: "/pages/login/index",
+  });
+}
 </script>
 <template>
   <view class="home">
@@ -24,6 +29,7 @@ function bindClick() {
       <button @click="share">分享</button>
     </view>
     <svg-icon name="123" />
+    <button @click="goLogin">去登录</button>
     <uni-badge text="2" type="success" @click="bindClick" />
   </view>
 </template>
