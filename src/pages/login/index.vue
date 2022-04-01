@@ -50,5 +50,6 @@ async function getVerificationCode() {
 </template>
 <style scoped lang="scss">
 .login-container {
+  width: 100%;
 }
 </style>

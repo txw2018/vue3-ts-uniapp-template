@@ -25,7 +25,6 @@ onShow(() => {
     <view>
       <text>realname:{{ userInfo.realname }}</text>
     </view>
-    <view class="text-area" />
     <button @click="goLogin">去登录</button>
   </view>
 </template>
