@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { CLIENT_ID, CLIENT_SECRET, GRANT_TYPE } from "@/utils/constants";
 import { postPhoneLogin, postVerificationCode } from "@/api/user";
+import currentConfig from "../../../config";
 import { reactive } from "vue";
 const loginInfo = reactive({
   username: "",
   password: "",
 });
+console.log(currentConfig, "currentConfig");
 //验证码登录
 async function onLogin() {
   postPhoneLogin({
@@ -19,11 +21,13 @@ async function onLogin() {
     ...loginInfo,
   })
     .then(({ data }) => {
+      console.log(data, "data");
       uni.setStorageSync("yq_token", data.access_token);
       uni.setStorageSync("yq_refresh", data.refresh_token);
       uni.setStorageSync("yq_cross", data.cross_token);
     })
     .catch((error) => {
+      console.log(error, "error");
       const errMsg = error.data.error.errors
         ? error.data.error.errors[0].field
         : "";
@@ -35,7 +39,6 @@ async function getVerificationCode() {
   const result = await postVerificationCode(loginInfo.username);
   console.log(result, 3333);
 }
-console.log(import.meta.env, 123);
 </script>
 <template>
   <view class="login-container">

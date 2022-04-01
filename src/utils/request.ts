@@ -4,7 +4,9 @@ import axios, {
   AxiosResponse,
   AxiosError,
 } from "axios";
+import axiosAdapterUniapp from "axios-adapter-uniapp";
 import axiosRetry from "axios-retry";
+import currentConfig from "../../config/index";
 
 axiosRetry(axios, { retries: 5 });
 
@@ -12,7 +14,8 @@ export const request = createAxiosInstance();
 
 function createAxiosInstance(): AxiosInstance {
   const instance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_API,
+    baseURL: currentConfig.baseApi,
+    adapter: axiosAdapterUniapp as any,
     timeout: 10000,
   });
   instance.interceptors.request.use(handleRequest, handleRequestError);
@@ -22,7 +25,10 @@ function createAxiosInstance(): AxiosInstance {
 
 function handleRequest(config: AxiosRequestConfig) {
   const token = uni.getStorageSync("yq_token");
-  config.headers!.Authorization = "Bearer " + token;
+  if (token) {
+    config.headers!.Authorization = "Bearer " + token;
+  }
+  config.headers!.channel = "shop_mini_program";
   return config;
 }
 
@@ -35,6 +41,8 @@ function handleResponse(response: AxiosResponse) {
 }
 
 function handleResponseError(error: AxiosError) {
+  console.log(error, 123);
+
   switch (error.response?.status) {
     case 400:
       break;

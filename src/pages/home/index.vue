@@ -1,36 +1,32 @@
 <script setup lang="ts">
-import { useUserStore } from "@/store/user";
-import SvgIcon from "@/components/base/svg-icon.vue";
-const store = useUserStore();
+import { ref } from "vue";
+import { getUser } from "@/api/user";
+import { onShow } from "@dcloudio/uni-app";
 
-function changeValue() {
-  store.changeValue();
-}
-function share() {
-  console.log(1232);
-}
-function bindClick() {
-  console.log(123);
-}
 function goLogin() {
   uni.navigateTo({
     url: "/pages/login/index",
   });
 }
+const userInfo = ref<any>({});
+async function getUserInfo() {
+  const { data } = await getUser();
+  userInfo.value = data;
+}
+onShow(() => {
+  getUserInfo();
+});
 </script>
 <template>
   <view class="home">
-    <uni-nav-bar shadow left-icon="left">
+    <uni-nav-bar shadow left-icon="left" :statusBar="true">
       <view>标题栏</view>
     </uni-nav-bar>
-    <view class="text-area">
-      <text class="title">{{ store.getValue }}</text>
-      <button @click="changeValue">切換</button>
-      <button @click="share">分享</button>
+    <view>
+      <text>realname:{{ userInfo.realname }}</text>
     </view>
-    <svg-icon name="123" />
+    <view class="text-area" />
     <button @click="goLogin">去登录</button>
-    <uni-badge text="2" type="success" @click="bindClick" />
   </view>
 </template>
 
@@ -40,8 +36,8 @@ function goLogin() {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  .uni-navbar {
-    width: 100%;
+  ::v-deep .uni-navbar {
+    width: 100vw;
   }
 }
 
