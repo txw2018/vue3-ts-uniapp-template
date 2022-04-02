@@ -13,6 +13,7 @@ async function getUserInfo() {
   const { data } = await getUser();
   userInfo.value = data;
 }
+
 onShow(() => {
   getUserInfo();
 });
@@ -34,8 +35,9 @@ onShow(() => {
 
 <style scoped lang="scss">
 .home {
-  background: url("https://cdn0.86yqy.com/weapp-img/special.png") no-repeat 100%
-    top;
+  background-image: url("https://cdn0.86yqy.com/weapp-img/special.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

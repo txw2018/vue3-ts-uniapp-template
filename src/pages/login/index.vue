@@ -21,7 +21,6 @@ async function onLogin() {
     ...loginInfo,
   })
     .then(({ data }) => {
-      console.log(data, "data");
       uni.setStorageSync("yq_token", data.access_token);
       uni.setStorageSync("yq_refresh", data.refresh_token);
       uni.setStorageSync("yq_cross", data.cross_token);
