@@ -19,9 +19,12 @@ onShow(() => {
 </script>
 <template>
   <view class="home">
-    <uni-nav-bar shadow left-icon="left" :statusBar="true">
-      <view>标题栏</view>
-    </uni-nav-bar>
+    <uni-nav-bar
+      statusBar
+      :border="false"
+      backgroundColor="rgba(255, 255, 255, 0)"
+      title="首页"
+    />
     <view>
       <text>realname:{{ userInfo.realname }}</text>
     </view>
@@ -31,12 +34,15 @@ onShow(() => {
 
 <style scoped lang="scss">
 .home {
+  background: url("https://cdn0.86yqy.com/weapp-img/special.png") no-repeat 100%
+    top;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  ::v-deep .uni-navbar {
-    width: 100vw;
+  min-height: 100vh;
+  ::v-deep {
+    .uni-navbar {
+      width: 100vw;
+    }
   }
 }
 

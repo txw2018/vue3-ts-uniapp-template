@@ -1,17 +1,25 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const name = ref(0);
-function show() {
-  console.log(123);
-}
+const chartData = ref({
+  categories: ["2016", "2017", "2018", "2019", "2020", "2021"],
+  series: [
+    {
+      name: "目标值",
+      data: [35, 36, 31, 33, 13, 34],
+    },
+    {
+      name: "完成量",
+      data: [18, 27, 21, 24, 6, 28],
+    },
+  ],
+});
 </script>
 
 <template>
   <view class="content">
-    <view class="text-area">
-      <text>{{ name }}</text>
-      <button @click="show">show</button>
+    <view class="charts-box">
+      <qiun-data-charts type="column" :chartData="chartData" />
     </view>
   </view>
 </template>
@@ -22,24 +30,5 @@ function show() {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: $uni-text-color-grey;
 }
 </style>

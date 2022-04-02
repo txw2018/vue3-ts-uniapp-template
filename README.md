@@ -90,3 +90,17 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
 ### 组件规范
 
 文件命名 my-component
+
+### 修改组件样式
+
+```css
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  ::v-deep .uni-navbar {
+    width: 100vw;
+  }
+}
+```
