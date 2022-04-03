@@ -8,4 +8,8 @@ export default {
     type: String,
     default: "",
   },
+  lazyLoad: {
+    type: Boolean,
+    default: false,
+  },
 };

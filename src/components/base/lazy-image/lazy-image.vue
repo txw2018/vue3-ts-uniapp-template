@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import Props from "./props";
-const props = defineProps(Props);
-console.log(props);
+defineProps(Props);
 </script>
 <template>
   <view>
-    <image />
+    <image :src="src" :mode="mode" :lazy-load="lazyLoad" />
   </view>
 </template>
 <style lang="scss" scoped></style>

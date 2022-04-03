@@ -104,3 +104,37 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
   }
 }
 ```
+
+### 编写组件
+
+方式一 template 模式
+
+```vue
+<script setup lang="ts">
+import { computed, watch } from "vue";
+const props = defineProps({
+  title: { type: String, default: "Vue" },
+  likes: { type: Number, default: 1 },
+});
+const newTile = computed(() => "hello" + props.title);
+watch(
+  () => props.likes,
+  (newValue) => {
+    console.log(newValue);
+  }
+);
+</script>
+<template>
+  <view>
+    <text>
+      {{ newTile }}
+    </text>
+  </view>
+</template>
+```
+
+方式二 render 模式
+
+```vue
+
+```
