@@ -136,5 +136,17 @@ watch(
 方式二 render 模式
 
 ```vue
-
+<script lang="ts">
+export default {
+  props: {
+    title: {
+      type: String,
+      default: "vue",
+    },
+  },
+  setup() {
+    // return <view>1111</view>;
+  },
+};
+</script>
 ```
