@@ -29,6 +29,7 @@ onShow(() => {
     <view>
       <text>realname:{{ userInfo.realname }}</text>
     </view>
+    <BasicRender />
     <button @click="goLogin">去登录</button>
   </view>
 </template>

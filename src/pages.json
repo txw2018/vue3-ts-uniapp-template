@@ -20,6 +20,12 @@
       }
     },
     {
+      "path": "pages/list/index",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
       "path": "pages/login/index",
       "style": {
         "navigationBarTitleText": "登录"
@@ -45,6 +51,10 @@
       {
         "pagePath": "pages/my/index",
         "text": "接口"
+      },
+      {
+        "pagePath": "pages/list/index",
+        "text": "列表"
       }
     ]
   }

@@ -12,4 +12,8 @@ export default {
     type: Boolean,
     default: false,
   },
+  showMenuByLongpress: {
+    type: Boolean,
+    default: false,
+  },
 };

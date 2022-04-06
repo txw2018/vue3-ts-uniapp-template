@@ -87,10 +87,6 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
 | | └husky.sh
 ```
 
-### 组件规范
-
-文件命名 my-component
-
 ### 修改组件样式
 
 ```css
@@ -150,3 +146,10 @@ export default {
 };
 </script>
 ```
+
+### 注册组件（easycom 模式）
+
+[文档](https://uniapp.dcloud.io/collocation/pages.html#easycom)
+
+- 第一步在 src/components/组件名/组件名.vue 的方式编写组件
+- 第二步在 src/components.d.ts 给组件添加 ts 智能提示
