@@ -7,7 +7,7 @@ type Config = {
   baseApi: string; // 测试api请求地址
   websocket: string;
 };
-const currentConfig = modules[`./env.${import.meta.env.VITE_APP_ENV}.ts`]
+const config = modules[`./env.${import.meta.env.VITE_APP_ENV}.ts`]
   .default as Config;
 
-export default currentConfig;
+export default config;

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-// import LazyImage from "@/components/base/lazy-image/lazy-image.vue";
 
 const imgList = ref([
   "https://cdn0.86yqy.com/weapp-img/special.png",
@@ -22,7 +21,7 @@ const imgList = ref([
 
 <template>
   <view class="content">
-    <lazy-image v-for="img in imgList" :key="img" :src="img" lazy-load />
+    <lazy-image v-for="img in imgList" :key="img" :src="img" radius="50%" />
   </view>
 </template>
 

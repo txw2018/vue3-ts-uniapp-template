@@ -1,18 +1,20 @@
 <script lang="ts" setup>
-import { watch, ref } from "vue";
+import { watch, ref, computed, type CSSProperties } from "vue";
 import Props from "./props";
+import { addUnit } from "@/utils/format";
+import { isDef } from "@/utils/validate";
 const props = defineProps(Props);
 const emit = defineEmits(["error", "load"]);
-const isError = ref(false);
+const error = ref(false);
 const loading = ref(true);
 
 watch(
   () => props.src,
   (newVal) => {
     if (!newVal) {
-      isError.value = true;
+      error.value = true;
     } else {
-      isError.value = false;
+      error.value = false;
       loading.value = true;
     }
   },
@@ -20,23 +22,36 @@ watch(
     immediate: true,
   }
 );
+
+const style = computed(() => {
+  const style: CSSProperties = {
+    width: addUnit(props.width),
+    height: addUnit(props.height),
+  };
+  if (isDef(props.radius)) {
+    style.overflow = "hidden";
+    style.borderRadius = addUnit(props.radius);
+  }
+  return style;
+});
+
 //加载失败
 function onErrorHandler(err: Event) {
   loading.value = false;
-  isError.value = true;
+  error.value = true;
   emit("error", err);
 }
 //加载成功
 function onLoadHandler() {
   loading.value = false;
-  isError.value = false;
+  error.value = false;
   emit("load");
 }
 </script>
 <template>
-  <view class="img-container">
+  <view class="lazy-image" :style="style">
     <image
-      v-if="!isError"
+      v-if="!error"
       :src="src"
       :mode="mode"
       :lazy-load="lazyLoad"
@@ -44,11 +59,11 @@ function onLoadHandler() {
       @error="onErrorHandler"
       @load="onLoadHandler"
     />
-    <view v-if="loading">
-      <slot name="loading"> loading</slot>
+    <view v-if="showLoading && loading">
+      <slot name="loading"> <uni-icons type="spinner-cycle" size="30" /></slot>
     </view>
-    <view v-if="isError">
-      <slot name="error">error</slot>
+    <view v-if="showError && error">
+      <slot name="error"><uni-icons type="image" size="30" /></slot>
     </view>
   </view>
 </template>

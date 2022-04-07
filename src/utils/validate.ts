@@ -1,5 +1,6 @@
+import { type Numeric } from "./basic";
 // 是否是空对象
-export const isEmptyObject = (val: any): boolean =>
+export const isEmptyObject = (val: object): boolean =>
   Object.keys(val).length === 0;
 
 // 是否已经定义
@@ -13,6 +14,10 @@ export const isObject = (val: unknown): val is Record<any, any> =>
 const _toString = Object.prototype.toString;
 
 // 是否是普通对象
-export function isPlainObject(obj: unknown): obj is Record<any, any> {
-  return _toString.call(obj) === "[object Object]";
+export function isPlainObject(val: unknown): val is Record<any, any> {
+  return _toString.call(val) === "[object Object]";
 }
+
+//是数值
+export const isNumeric = (val: Numeric): val is string =>
+  typeof val === "number" || /^\d+(\.\d+)?$/.test(val);

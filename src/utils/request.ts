@@ -6,7 +6,7 @@ import axios, {
 } from "axios";
 import axiosAdapterUniapp from "axios-adapter-uniapp";
 import axiosRetry from "axios-retry";
-import currentConfig from "../../config/index";
+import config from "../../config/index";
 
 axiosRetry(axios, { retries: 5 });
 
@@ -14,7 +14,7 @@ export const request = createAxiosInstance();
 
 function createAxiosInstance(): AxiosInstance {
   const instance = axios.create({
-    baseURL: currentConfig.baseApi,
+    baseURL: config.baseApi,
     adapter: axiosAdapterUniapp as any,
     timeout: 10000,
   });
