@@ -129,21 +129,22 @@ watch(
 </template>
 ```
 
-方式二 render 模式
+方式二 render 模式（小程序不支持）
 
 ```vue
 <script lang="ts">
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   props: {
     title: {
       type: String,
       default: "vue",
     },
   },
-  setup() {
+  setup(props) {
     // return <view>1111</view>;
   },
-};
+});
 </script>
 ```
 
