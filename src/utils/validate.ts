@@ -1,7 +1,7 @@
 import { type Numeric } from "./basic";
 // 是否是空对象
-export const isEmptyObject = (val: object): boolean =>
-  Object.keys(val).length === 0;
+export const isEmptyObject = (val: unknown): val is object =>
+  isPlainObject(val) && Object.keys(val).length === 0;
 
 // 是否已经定义
 export const isDef = <T>(val: T): val is NonNullable<T> =>

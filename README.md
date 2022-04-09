@@ -1,8 +1,13 @@
-### 项目技术栈
+# 项目技术栈
 
 uniapp ： vue3 + ts + vite + axios + pinia + sass
 
-### git 提交规范 [相关文章](https://juejin.cn/post/6844903606815064077)
+其他插件：
+
+- uni_ui:官方提供的简易 ui 库
+- ucharts:一个兼容不同平台的 echarts
+
+# git 提交规范 [相关文章](https://juejin.cn/post/6844903606815064077)
 
 - type: commit 的类型
 - feat: 新特性
@@ -17,7 +22,7 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
 - body: commit 具体修改内容, 可以分为多行, 建议符合 [50/72 formatting](https://link.juejin.cn/?target=https%3A%2F%2Flink.zhihu.com%2F%3Ftarget%3Dhttps%253A%2F%2Fstackoverflow.com%2Fquestions%2F2290016%2Fgit-commit-messages-50-72-formatting)
 - footer: 一些备注, 通常是 BREAKING CHANGE 或修复的 bug 的链接.
 
-### app 更新方案
+# app 更新方案
 
 |            | ios              | 安卓       |
 | ---------- | ---------------- | ---------- |
@@ -27,7 +32,7 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
 [整包更新](https://ask.dcloud.net.cn/article/34972)
 [资源热更新](https://ask.dcloud.net.cn/article/35667)
 
-### 项目解构
+# 项目结构
 
 ```bash
 ├─.commitlintrc.js          # commitlint配置文件
@@ -47,6 +52,7 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
 ├─README.md
 ├─tsconfig.json             # ts配置
 ├─vite.config.ts            # vite配置
+├─config                    # 不同环境变量配置
 ├─src
 | ├─App.vue
 | ├─env.d.ts
@@ -87,7 +93,7 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
 | | └husky.sh
 ```
 
-### 修改组件样式
+# 修改组件样式
 
 ```css
 .home {
@@ -101,11 +107,11 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
 }
 ```
 
-### 编写组件
+# 编写组件
 
 方式一 template 模式
 
-```vue
+```ts
 <script setup lang="ts">
 import { computed, watch } from "vue";
 const props = defineProps({
@@ -131,7 +137,7 @@ watch(
 
 方式二 render 模式（小程序不支持）
 
-```vue
+```ts
 <script lang="ts">
 import { defineComponent } from "vue";
 export default defineComponent({
@@ -148,9 +154,37 @@ export default defineComponent({
 </script>
 ```
 
-### 注册组件（easycom 模式）
+# 注册组件（easycom 模式）
 
 [文档](https://uniapp.dcloud.io/collocation/pages.html#easycom)
 
 - 第一步在 src/components/组件名/组件名.vue 的方式编写组件
 - 第二步在 src/components.d.ts 给组件添加 ts 智能提示
+
+# style 标签中使用 js 变量
+
+```js
+<script setup>
+const theme = {
+  color: "red";
+}
+</script >
+  /* or */
+<script >
+export default {
+  data() {
+    return {
+      color: 'red'
+    }
+  }
+}
+</script >
+```
+
+```css
+page {
+  color: v-bind(color);
+  /* or */
+  color: v-bind("theme.color");
+}
+```

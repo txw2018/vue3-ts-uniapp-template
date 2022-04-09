@@ -7,4 +7,14 @@ export default defineConfig({
   resolve: {
     alias: [{ find: "@", replacement: "./src" }],
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+        @import "./src/static/css/mixin.scss";
+        @import "./src/static/css/var.scss";
+        `,
+      },
+    },
+  },
 });

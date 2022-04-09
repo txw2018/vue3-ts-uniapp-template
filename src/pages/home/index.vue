@@ -17,6 +17,9 @@ async function getUserInfo() {
 onShow(() => {
   getUserInfo();
 });
+const theme = {
+  color: "red",
+};
 </script>
 <template>
   <view class="home">
@@ -27,7 +30,7 @@ onShow(() => {
       title="首页"
     />
     <view>
-      <text>realname:{{ userInfo.realname }}</text>
+      <text class="realname">realname:{{ userInfo.realname }}</text>
     </view>
     <button @click="goLogin">去登录</button>
   </view>
@@ -48,13 +51,9 @@ onShow(() => {
   }
 }
 
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
+.realname {
+  @include center();
+  color: v-bind("theme.color");
 }
 
 .text-area {
