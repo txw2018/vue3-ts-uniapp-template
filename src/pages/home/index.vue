@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { getUser } from "@/api/user";
 import { onShow } from "@dcloudio/uni-app";
+import useStorageSync from "@/hooks/useStorageSync";
 
 function goLogin() {
   uni.navigateTo({
@@ -12,6 +13,10 @@ const userInfo = ref<any>({});
 async function getUserInfo() {
   const { data } = await getUser();
   userInfo.value = data;
+  const { data: token } = useStorageSync("token123", 1231);
+  setTimeout(() => {
+    console.log((token.value = 32131231));
+  }, 2000);
 }
 
 onShow(() => {
