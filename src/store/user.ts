@@ -5,15 +5,15 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore("userStore", {
   state: () => {
     return {
-      value: 1,
+      reaname: "txw",
     };
   },
   getters: {
-    getValue: (state) => state.value,
+    getReaname: (state) => state.reaname,
   },
   actions: {
-    changeValue() {
-      this.value++;
+    changeReaname() {
+      this.reaname += this.reaname;
     },
   },
 });

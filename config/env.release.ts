@@ -1,8 +1,8 @@
 export default {
-  title: "药企云",
-  ENV_CONFIG: "sit",
-  baseUrl: "demo.m.86yqy.com", // demo环境项目地址
-  $cdn: "https://cdn0.86yqy.com",
-  baseApi: "http://demo.swoole.86yqy.com", // demo环境api请求地址
-  websocket: "ws://demo.swoole.86yqy.com/ws",
+  title: "xxx",
+  ENV_CONFIG: "demo",
+  baseUrl: "demo.m.xxx.com", // demo环境项目地址
+  $cdn: "https://cdn.xxx.com",
+  baseApi: "http://demo.xxx.com", // demo环境api请求地址
+  websocket: "ws://demo.xxx.com/ws",
 };

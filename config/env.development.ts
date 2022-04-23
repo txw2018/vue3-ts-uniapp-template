@@ -1,8 +1,8 @@
 export default {
-  title: "药企云",
+  title: "xxx项目",
   ENV_CONFIG: "qa1",
-  baseUrl: "qa1.m.86yqy.com", // 测试项目地址
-  $cdn: "https://cdn0.86yqy.com",
-  baseApi: "http://demo.swoole.86yqy.com", // 测试api请求地址
-  websocket: "ws://demo.swoole.86yqy.com/ws",
+  baseUrl: "demo.m.xxx.com", // 测试项目地址
+  $cdn: "https://cdn.xxx.com",
+  baseApi: "http://demo.xxx.com", // 测试api请求地址
+  websocket: "ws://demo.xxx.com/ws",
 };

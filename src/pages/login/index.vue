@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { CLIENT_ID, CLIENT_SECRET, GRANT_TYPE } from "@/utils/constants";
-import { postPhoneLogin, postVerificationCode } from "@/api/user";
 import currentConfig from "../../../config";
 import { reactive } from "vue";
 const loginInfo = reactive({
@@ -10,33 +8,11 @@ const loginInfo = reactive({
 console.log(currentConfig, "currentConfig");
 //验证码登录
 async function onLogin() {
-  postPhoneLogin({
-    client_id: CLIENT_ID,
-    client_secret: CLIENT_SECRET,
-    grant_type: GRANT_TYPE,
-    captcha_id: "",
-    captcha_code: "",
-    source: 2,
-    type: 2,
-    ...loginInfo,
-  })
-    .then(({ data }) => {
-      uni.setStorageSync("yq_token", data.access_token);
-      uni.setStorageSync("yq_refresh", data.refresh_token);
-      uni.setStorageSync("yq_cross", data.cross_token);
-    })
-    .catch((error) => {
-      console.log(error, "error");
-      const errMsg = error.data.error.errors
-        ? error.data.error.errors[0].field
-        : "";
-      console.log(errMsg);
-    });
+  console.log("去登录");
 }
 //获取验证码
 async function getVerificationCode() {
-  const result = await postVerificationCode(loginInfo.username);
-  console.log(result, 3333);
+  console.log("获取验证码");
 }
 </script>
 <template>

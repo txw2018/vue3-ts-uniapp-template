@@ -22,6 +22,13 @@ uniapp ： vue3 + ts + vite + axios + pinia + sass
 - body: commit 具体修改内容, 可以分为多行, 建议符合 [50/72 formatting](https://link.juejin.cn/?target=https%3A%2F%2Flink.zhihu.com%2F%3Ftarget%3Dhttps%253A%2F%2Fstackoverflow.com%2Fquestions%2F2290016%2Fgit-commit-messages-50-72-formatting)
 - footer: 一些备注, 通常是 BREAKING CHANGE 或修复的 bug 的链接.
 
+# 环境变量
+
+不同环境的请求接口放在项目根目录的 config 下，会根据不同的打包命令使用不同的接口，详细命令看 package.json
+qa1 qa2 qa3 qa4 均为内网测试
+release 为外网测试
+production 为正式环境
+
 # app 更新方案
 
 |            | ios              | 安卓       |

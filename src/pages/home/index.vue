@@ -1,33 +1,26 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { getUser } from "@/api/user";
-import { onShow } from "@dcloudio/uni-app";
-import useStorageSync from "@/hooks/useStorageSync";
+import { computed, CSSProperties, ref } from "vue";
+import { images } from "@/utils/mock";
+import { useUserStore } from "@/store/user";
+const userStore = useUserStore();
 
 function goLogin() {
   uni.navigateTo({
     url: "/pages/login/index",
   });
 }
-const userInfo = ref<any>({});
-async function getUserInfo() {
-  const { data } = await getUser();
-  userInfo.value = data;
-  const { data: token } = useStorageSync("token123", 1231);
-  setTimeout(() => {
-    console.log((token.value = 32131231));
-  }, 2000);
-}
+const getRealName = computed(() => userStore.getReaname);
 
-onShow(() => {
-  getUserInfo();
-});
 const theme = {
   color: "red",
+  bgImg: images[0],
 };
+const homeStyle = computed<CSSProperties>(() => ({
+  backgroundImage: `url(${theme.bgImg})`,
+}));
 </script>
 <template>
-  <view class="home">
+  <view class="home" :style="homeStyle">
     <uni-nav-bar
       statusBar
       :border="false"
@@ -35,7 +28,7 @@ const theme = {
       title="首页"
     />
     <view>
-      <text class="realname">realname:{{ userInfo.realname }}</text>
+      <text class="realname">realname:{{ getRealName }}</text>
     </view>
     <button @click="goLogin">去登录</button>
   </view>
@@ -43,7 +36,6 @@ const theme = {
 
 <style scoped lang="scss">
 .home {
-  background-image: url("https://cdn0.86yqy.com/weapp-img/special.png");
   background-repeat: no-repeat;
   background-size: contain;
   display: flex;

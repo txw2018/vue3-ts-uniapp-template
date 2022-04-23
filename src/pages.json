@@ -6,7 +6,8 @@
       "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
     }
   },
-  "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
     {
       "path": "pages/home/index",
       "style": {
@@ -46,11 +47,11 @@
     "list": [
       {
         "pagePath": "pages/home/index",
-        "text": "组件"
+        "text": "首页"
       },
       {
         "pagePath": "pages/my/index",
-        "text": "接口"
+        "text": "图表"
       },
       {
         "pagePath": "pages/list/index",
