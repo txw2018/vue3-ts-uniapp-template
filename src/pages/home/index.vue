@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { computed, CSSProperties, ref } from "vue";
+import { computed, CSSProperties, onMounted, watch } from "vue";
 import { images } from "@/utils/mock";
 import { useUserStore } from "@/store/user";
+import useAxios from "../../hooks/useAxios";
+// import { getUserInfo } from "@/api/home";
+
 const userStore = useUserStore();
 
 function goLogin() {
@@ -18,6 +21,17 @@ const theme = {
 const homeStyle = computed<CSSProperties>(() => ({
   backgroundImage: `url(${theme.bgImg})`,
 }));
+onMounted(() => {
+  // const { response } = await getUserInfo();
+  const { data } = useAxios({
+    url: "http://jsonplaceholder.typicode.com/posts",
+  });
+  watch(data, () => {
+    if (data.value) {
+      console.log(data.value, 123);
+    }
+  });
+});
 </script>
 <template>
   <view class="home" :style="homeStyle">
