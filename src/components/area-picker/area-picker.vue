@@ -24,7 +24,6 @@ const popupRef = ref<any>(null);
 const years = ref<number[]>([]);
 const months = ref<number[]>([]);
 const days = ref<number[]>([]);
-const visible = ref(true);
 const indicatorStyle = ref(`height: 50px;`);
 const value = ref<number[]>([]);
 function getData() {
@@ -80,7 +79,6 @@ defineExpose({
         <view class="right mr5" @click="confirm">{{ confirmText }}</view>
       </view>
       <picker-view
-        v-if="visible"
         :indicator-style="indicatorStyle"
         :value="value"
         @change="bindChange"
@@ -114,6 +112,12 @@ defineExpose({
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .picker-view {
+    height: 300px;
+    .item {
+      @include center();
+    }
   }
 }
 </style>
