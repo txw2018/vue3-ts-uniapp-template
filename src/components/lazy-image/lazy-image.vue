@@ -51,6 +51,7 @@ function onLoadHandler() {
 <template>
   <view class="lazy-image" :style="style">
     <image
+      class="image"
       v-if="!error"
       :src="src"
       :mode="mode"
@@ -59,12 +60,29 @@ function onLoadHandler() {
       @error="onErrorHandler"
       @load="onLoadHandler"
     />
-    <view v-if="showLoading && loading">
+    <view class="loading" v-if="showLoading && loading">
       <slot name="loading"> <uni-icons type="spinner-cycle" size="30" /></slot>
     </view>
-    <view v-if="showError && error">
-      <slot name="error"><uni-icons type="image" size="30" /></slot>
+    <view class="error" v-if="showError && error">
+      <slot name="error"><uni-icons type="image-filled" size="30" /></slot>
     </view>
   </view>
 </template>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.lazy-image {
+  position: relative;
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+  .loading,
+  .error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include center();
+  }
+}
+</style>
