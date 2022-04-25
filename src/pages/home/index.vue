@@ -25,6 +25,12 @@ onShow(() => {
 const theme = {
   color: "red",
 };
+
+function openArea() {
+  uni.navigateTo({
+    url: "/pages/detail/index",
+  });
+}
 </script>
 <template>
   <view class="home">
@@ -38,6 +44,7 @@ const theme = {
       <text class="realname">realname:{{ userInfo.realname }}</text>
     </view>
     <button @click="goLogin">去登录</button>
+    <button @click="openArea">打开地址</button>
   </view>
 </template>
 
