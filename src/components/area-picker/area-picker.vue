@@ -1,77 +1,221 @@
 <script setup lang="ts">
-import { ref, defineExpose, watch, onMounted } from "vue";
-
+import {
+  ref,
+  watch,
+  onMounted,
+  onDeactivated,
+  onActivated,
+  computed,
+  reactive,
+  PropType,
+} from "vue";
+// Types
+import type {
+  AreaList,
+  AreaColumnType,
+  AreaColumnOption,
+  StateType,
+} from "./types";
 const props = defineProps({
+  //是否展示
   show: {
     type: Boolean,
     default: false,
   },
+  //	当前选中项对应的地区码
+  code: String,
+  //省市区地址列表
+  areaList: {
+    type: Object as PropType<AreaList>,
+    default: () => ({}),
+  },
+  // 点击遮罩关闭
+  maskClick: {
+    type: Boolean,
+    default: true,
+  },
+  // 标题
   title: {
     type: String,
-    default: "123",
+    default: "",
   },
+
+  // 取消文案
   cancelText: {
     type: String,
     default: "取消",
   },
+  // 确定文档
   confirmText: {
     type: String,
     default: "确定",
   },
 });
-const emit = defineEmits(["close", "confirm"]);
+
+const emit = defineEmits<{
+  (e: "open"): void;
+  (e: "close"): void;
+  (e: "confirm", value: AreaColumnOption[]): void;
+  (e: "change", event: any): void;
+  (e: "update:show", val: boolean): void;
+}>();
+
+let shouldReopen: boolean;
+
 const popupRef = ref<any>(null);
-const years = ref<number[]>([]);
-const months = ref<number[]>([]);
-const days = ref<number[]>([]);
-const indicatorStyle = ref(`height: 50px;`);
-const value = ref<number[]>([]);
-function getData() {
-  const date = new Date();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  for (let i = 1990; i <= date.getFullYear(); i++) {
-    years.value.push(i);
-  }
-  for (let i = 1; i <= 12; i++) {
-    months.value.push(i);
-  }
-  for (let i = 1; i <= 31; i++) {
-    days.value.push(i);
-  }
-  value.value = [9999, month - 1, day - 1];
-}
+let region = ref([0, 0, 0]);
+const state = reactive<StateType>({
+  code: props.code,
+  province: [],
+  city: [],
+  county: [],
+});
+const areaList = computed(() => {
+  const { areaList } = props;
+  return {
+    province: areaList.province_list || {},
+    city: areaList.city_list || {},
+    county: areaList.county_list || {},
+  };
+});
+
 function bindChange(e: any) {
-  const val = e.detail.value;
+  let val = e.detail.value;
+  if (region.value[0] !== val[0]) {
+    //滚动第一个
+    region.value = [val[0], 0, 0];
+    state.code = state.province[val[0]].code;
+  } else if (region.value[1] !== val[1]) {
+    //滚动第二个
+    region.value = [val[0], val[1], 0];
+    state.code = state.city[val[1]].code;
+  } else {
+    //滚动第三个
+    region.value = val;
+    state.code = state.county[val[2]].code;
+  }
+  setValues();
+
+  emit("change", e);
 }
 
+function open() {
+  emit("open");
+}
+function close() {
+  emit("close");
+  emit("update:show", false);
+}
+function confirm() {
+  setValues();
+  emit("confirm", parseValues());
+}
+function parseValues() {
+  const regionVal = region.value;
+  const { province, city, county } = state;
+  const provinceVal = province[regionVal[0]];
+  const cityVal = city[regionVal[1]];
+  const countyVal = county[regionVal[2]];
+  return [provinceVal, cityVal, countyVal];
+}
+function popupChange(e: any) {
+  if (e.show) {
+    emit("update:show", true);
+  } else {
+    emit("update:show", false);
+  }
+}
+const getDefaultCode = () => {
+  const { county, city } = areaList.value;
+  const countyCodes = Object.keys(county);
+  if (countyCodes[0]) {
+    return countyCodes[0];
+  }
+
+  const cityCodes = Object.keys(city);
+  if (cityCodes[0]) {
+    return cityCodes[0];
+  }
+
+  return "";
+};
+const getColumnValues = (type: AreaColumnType, code?: string) => {
+  let column: AreaColumnOption[] = [];
+  if (type !== "province" && !code) {
+    return column;
+  }
+  const list = areaList.value[type];
+  column = Object.keys(list).map((listCode) => ({
+    code: listCode,
+    name: list[listCode],
+  }));
+  if (code) {
+    column = column.filter((item) => item.code.startsWith(code));
+  }
+  return column;
+};
+
+const setValues = () => {
+  let code = state.code || getDefaultCode();
+  const province = getColumnValues("province");
+  const city = getColumnValues("city", code.slice(0, 2));
+
+  //如果code是省份编码
+  if (city.length && code.slice(2, 4) === "00") {
+    [{ code }] = city;
+  }
+  const countyCode = code.length === 9 ? code.slice(0, 6) : code.slice(0, 4);
+  const county = getColumnValues("county", countyCode);
+
+  state.province = province!;
+  state.city = city!;
+  state.county = county!;
+};
+
 onMounted(() => {
-  getData();
+  setValues();
+  open();
+});
+onActivated(() => {
+  if (shouldReopen) {
+    emit("update:show", true);
+    shouldReopen = false;
+  }
+});
+
+onDeactivated(() => {
+  if (props.show) {
+    close();
+    shouldReopen = true;
+  }
 });
 watch(
   () => props.show,
   (newVal) => {
     if (newVal) {
       popupRef.value.open();
+      open();
     } else {
       popupRef.value.close();
+      emit("close");
     }
   }
 );
-
-function close() {
-  emit("close");
-}
-function confirm() {
-  emit("confirm");
-}
-
-defineExpose({
-  open,
-});
+watch(
+  () => props.code,
+  (value) => {
+    state.code = value;
+    setValues();
+  }
+);
 </script>
 <template>
-  <uni-popup type="bottom" ref="popupRef" :mask-click="false">
+  <uni-popup
+    type="bottom"
+    @change="popupChange"
+    ref="popupRef"
+    :mask-click="maskClick"
+  >
     <view class="wrap">
       <view class="header">
         <view class="left ml5" @click="close">{{ cancelText }}</view>
@@ -79,25 +223,25 @@ defineExpose({
         <view class="right mr5" @click="confirm">{{ confirmText }}</view>
       </view>
       <picker-view
-        :indicator-style="indicatorStyle"
-        :value="value"
+        indicator-class="indicatorClass"
+        :value="region"
         @change="bindChange"
         class="picker-view"
       >
         <picker-view-column>
-          <view class="item" v-for="(item, index) in years" :key="index"
-            >{{ item }}年</view
-          >
+          <view class="item" v-for="item of state.province" :key="item.code">{{
+            item.name
+          }}</view>
         </picker-view-column>
         <picker-view-column>
-          <view class="item" v-for="(item, index) in months" :key="index"
-            >{{ item }}月</view
-          >
+          <view class="item" v-for="item of state.city" :key="item.code">{{
+            item.name
+          }}</view>
         </picker-view-column>
         <picker-view-column>
-          <view class="item" v-for="(item, index) in days" :key="index"
-            >{{ item }}日</view
-          >
+          <view class="item" v-for="item of state.county" :key="item.code">{{
+            item.name
+          }}</view>
         </picker-view-column>
       </picker-view>
     </view>
@@ -107,6 +251,7 @@ defineExpose({
 <style scoped lang="scss">
 .wrap {
   background-color: #fff;
+  padding-bottom: 80rpx;
   .header {
     height: 100rpx;
     display: flex;
@@ -114,10 +259,13 @@ defineExpose({
     align-items: center;
   }
   .picker-view {
-    height: 300px;
+    height: 600rpx;
     .item {
       @include center();
     }
+  }
+  .indicatorClass {
+    height: 88rpx;
   }
 }
 </style>
