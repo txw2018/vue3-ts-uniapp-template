@@ -8,6 +8,7 @@ import {
   computed,
   reactive,
   PropType,
+  nextTick,
 } from "vue";
 // Types
 import type {
@@ -79,7 +80,7 @@ const areaList = computed(() => {
   };
 });
 
-function bindChange(e: any) {
+const bindChange = (e: any) => {
   let val = e.detail.value;
   if (region.value[0] !== val[0]) {
     //滚动第一个
@@ -97,34 +98,34 @@ function bindChange(e: any) {
   setValues();
 
   emit("change", e);
-}
+};
 
-function open() {
+const open = () => {
   emit("open");
-}
-function close() {
+};
+const close = () => {
   emit("close");
   emit("update:show", false);
-}
-function confirm() {
+};
+const confirm = () => {
   setValues();
   emit("confirm", parseValues());
-}
-function parseValues() {
+};
+const parseValues = () => {
   const regionVal = region.value;
   const { province, city, county } = state;
   const provinceVal = province[regionVal[0]];
   const cityVal = city[regionVal[1]];
   const countyVal = county[regionVal[2]];
   return [provinceVal, cityVal, countyVal];
-}
-function popupChange(e: any) {
+};
+const popupChange = (e: any) => {
   if (e.show) {
     emit("update:show", true);
   } else {
     emit("update:show", false);
   }
-}
+};
 const getDefaultCode = () => {
   const { county, city } = areaList.value;
   const countyCodes = Object.keys(county);
@@ -170,6 +171,42 @@ const setValues = () => {
   state.province = province!;
   state.city = city!;
   state.county = county!;
+  setIndexs([
+    getIndex("province", code),
+    getIndex("city", code),
+    getIndex("county", code),
+  ]);
+};
+
+const setIndexs = async (indexs: number[]) => {
+  await nextTick();
+  region.value = indexs;
+};
+
+const getIndex = (type: AreaColumnType, code: string): number => {
+  let compareNum = code.length;
+
+  if (type === "province") {
+    compareNum = 2;
+  }
+  if (type === "city") {
+    compareNum = 4;
+  }
+  code = code.slice(0, compareNum);
+  const list = getColumnValues(
+    type,
+    compareNum > 2 ? code.slice(0, compareNum - 2) : ""
+  );
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].code.slice(0, compareNum) === code) {
+      return i;
+    }
+  }
+  return 0;
+};
+const reset = (newCode = "") => {
+  state.code = newCode;
+  setValues();
 };
 
 onMounted(() => {
@@ -208,6 +245,10 @@ watch(
     setValues();
   }
 );
+
+defineExpose({
+  reset,
+});
 </script>
 <template>
   <uni-popup
