@@ -7,11 +7,6 @@ import useAxios from "../../hooks/useAxios";
 
 const userStore = useUserStore();
 
-function goLogin() {
-  uni.navigateTo({
-    url: "/pages/login/index",
-  });
-}
 const getRealName = computed(() => userStore.getReaname);
 
 const theme = {
@@ -21,6 +16,11 @@ const theme = {
 const homeStyle = computed<CSSProperties>(() => ({
   backgroundImage: `url(${theme.bgImg})`,
 }));
+const goAddress = () => {
+  uni.navigateTo({
+    url: "/pages/address/index",
+  });
+};
 onMounted(() => {
   // const { response } = await getUserInfo();
   const { data } = useAxios({
@@ -44,7 +44,7 @@ onMounted(() => {
     <view>
       <text class="realname">realname:{{ getRealName }}</text>
     </view>
-    <button @click="goLogin">去登录</button>
+    <button @click="goAddress">打开地址</button>
   </view>
 </template>
 
