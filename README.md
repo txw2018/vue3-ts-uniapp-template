@@ -29,6 +29,11 @@ qa1 qa2 qa3 qa4 均为内网测试
 release 为外网测试
 production 为正式环境
 
+# 组件
+
+- area-picker 封装的省市区联动组件 使用最新的行政编码
+- lazy-image 二次封装 image 组件，统一处理 loading 跟图片加载失败状态
+
 # app 更新方案
 
 |            | ios              | 安卓       |
