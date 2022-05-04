@@ -1,5 +1,5 @@
-import { request } from "@/utils/request";
+import { get } from "@/api/base";
 
 export function getUserInfo(id: number) {
-  return request.get<any>("api/user", { params: { id } });
+  return get("api/user", { params: { id } });
 }

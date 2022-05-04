@@ -1,4 +1,4 @@
-import { request } from "@/utils/request";
+import { post } from "./base";
 // import { request1 } from "@/utils/request1";
 import { PhoneLoginType } from "@/types/request";
 
@@ -8,5 +8,5 @@ import { PhoneLoginType } from "@/types/request";
  * @returns
  */
 export function postPhoneLogin(data: PhoneLoginType) {
-  return request.post<any>("/api/authorizations", data);
+  return post<any>("/api/authorizations", data);
 }
