@@ -1,5 +1,5 @@
 ├─.commitlintrc.js
-├─.env.development
+
 
 ├─.env.qa1
 ├─.env.qa2

@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1f5ce70-7660-4911-a8da-8d4202699972" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+    <list default="true" id="b1f5ce70-7660-4911-a8da-8d4202699972" name="变更" comment="feat：add1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/home.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/home.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/type.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +38,14 @@
       <workItem from="1648543076445" duration="625000" />
       <workItem from="1648606324446" duration="222000" />
     </task>
+    <task id="LOCAL-00001" summary="feat：add1">
+      <created>1659489805665</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1659489805665</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -57,6 +61,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat：add1" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：add1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
