@@ -14,7 +14,7 @@
 ├─package.json
 ├─README.md
 ├─result.txt
-├─tsconfig.json
+
 
 ├─src
 |  ├─App.vue
