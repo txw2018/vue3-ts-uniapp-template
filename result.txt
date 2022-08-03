@@ -15,7 +15,7 @@
 ├─README.md
 ├─result.txt
 ├─tsconfig.json
-├─vite.config.ts
+
 ├─src
 |  ├─App.vue
 |  ├─env.d.ts
