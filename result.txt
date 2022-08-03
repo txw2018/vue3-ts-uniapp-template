@@ -1,6 +1,6 @@
 ├─.commitlintrc.js
 ├─.env.development
-├─.env.production
+
 ├─.env.qa1
 ├─.env.qa2
 ├─.env.qa3
