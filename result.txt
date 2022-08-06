@@ -49,7 +49,5 @@
 |  |  └home.ts
 ├─.vscode
 |    └settings.json
-├─.husky
-|   ├─commit-msg
-|   ├─_
+=
 
